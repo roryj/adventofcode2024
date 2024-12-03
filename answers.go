@@ -54,7 +54,7 @@ func main() {
 		result := day2.Part_1_CalculateSafeReports(string(input))
 		fmt.Println("Part 1 Result: ", result)
 
-		// result2 := day1.Part2_FindSimilarity(string(input))
-		// fmt.Println("Part 2 Result: ", result2)
+		result2 := day2.Part_2_CalculateSafeReportsWithDampener(string(input))
+		fmt.Println("Part 2 Result: ", result2)
 	}
 }
