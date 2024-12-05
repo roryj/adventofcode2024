@@ -77,7 +77,7 @@ func main() {
 		result := day3.Part_1_parse_and_run_corrupted(string(input))
 		fmt.Println("Part 1 Result: ", result)
 
-		// result2 := day2.Part_2_CalculateSafeReportsWithDampener(string(input))
-		// fmt.Println("Part 2 Result: ", result2)
+		result2 := day3.Part_2_parse_and_run_corrupted_enable_disable(string(input))
+		fmt.Println("Part 2 Result: ", result2)
 	}
 }
