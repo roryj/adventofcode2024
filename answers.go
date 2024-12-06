@@ -8,6 +8,7 @@ import (
 	"roryj.ca/aoc2024/day1"
 	"roryj.ca/aoc2024/day2"
 	"roryj.ca/aoc2024/day3"
+	"roryj.ca/aoc2024/day4"
 )
 
 // main function
@@ -78,6 +79,28 @@ func main() {
 		fmt.Println("Part 1 Result: ", result)
 
 		result2 := day3.Part_2_parse_and_run_corrupted_enable_disable(string(input))
+		fmt.Println("Part 2 Result: ", result2)
+	}
+	{
+		fmt.Println("--- Day 4 ---")
+		file, err := os.Open("inputs/day4.txt")
+		if err != nil {
+			panic(err)
+		}
+		// close fi on exit and check for its returned error
+		defer func() {
+			if err := file.Close(); err != nil {
+				panic(err)
+			}
+		}()
+		input, err := io.ReadAll(file)
+		if err != nil {
+			panic(err)
+		}
+		result := day4.Part_1_FindAllXmas(string(input))
+		fmt.Println("Part 1 Result: ", result)
+
+		result2 := day4.Part_2_FindAllX_mas(string(input))
 		fmt.Println("Part 2 Result: ", result2)
 	}
 }
