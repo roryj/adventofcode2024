@@ -46,5 +46,85 @@ func Part_1_validate_print_queue(input string) int {
 
 	fmt.Printf("queues: %v & rules: %v", queues, rules)
 
-	return 0
+	var okQs [][]int
+
+	for _, printQ := range queues {
+		fmt.Printf("Checking queue: %v\n", printQ)
+		// all rules for current queue
+		fmt.Println("Rules for queue:")
+		for _, page := range printQ {
+			rule := rules[page]
+
+			var activeRule []int
+
+			for _, r := range rule {
+				for _, p := range printQ {
+					if r == p {
+						activeRule = append(activeRule, r)
+					}
+				}
+			}
+
+			fmt.Printf("%s[%v] -> %v\n", strings.Repeat(" ", 4), page, activeRule)
+		}
+
+		var seenItems []int
+		validQ := true
+
+		for _, page := range printQ {
+			fmt.Printf("Checking page: %v\n", page)
+
+			// if the seen items is 0, then we can just add it, it will pass all rules
+			if len(seenItems) == 0 {
+				fmt.Println("empty queue, all good")
+				seenItems = append(seenItems, page)
+				continue
+			}
+
+			// now, for the current page, check to see if there are any rules that says it needs to be
+			// before any pages before it. This isnt efficient, but meh
+			allRequiredAfterPages, ok := rules[page]
+			if !ok {
+				// no rule for page, page is ok!
+				fmt.Println("no rules for the current page, all good")
+				seenItems = append(seenItems, page)
+				continue
+			}
+
+			for _, afterPage := range allRequiredAfterPages {
+				for _, seen := range seenItems {
+					// fmt.Printf("checking if %v is in %v\n", afterPage, seen)
+					if afterPage == seen {
+						// the order is wrong, a page that needs to be after is before the current page
+						validQ = false
+						fmt.Println("there is a page that breaks the printing order. Skipping")
+						break
+					}
+				}
+				if !validQ {
+					break
+				}
+			}
+			if !validQ {
+				break
+			}
+
+			seenItems = append(seenItems, page)
+		}
+
+		// if we have seen all items, then we are ok and the page order is valid
+		if validQ {
+			okQs = append(okQs, printQ)
+		}
+	}
+
+	// now calculate the result needed, which is the middle item in each ok queue and sum them together
+
+	result := 0
+
+	for _, q := range okQs {
+		result += q[len(q)/2]
+	}
+
+	return result
 }
