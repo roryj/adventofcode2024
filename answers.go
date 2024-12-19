@@ -123,7 +123,7 @@ func main() {
 		result := day5.Part_1_validate_print_queue(string(input))
 		fmt.Println("Part 1 Result: ", result)
 
-		// result2 := day4.Part_2_FindAllX_mas(string(input))
-		// fmt.Println("Part 2 Result: ", result2)
+		result2 := day5.Part_2_incorrect_only_updates(string(input))
+		fmt.Println("Part 2 Result: ", result2)
 	}
 }
