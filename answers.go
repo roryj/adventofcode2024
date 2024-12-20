@@ -10,6 +10,7 @@ import (
 	"roryj.ca/aoc2024/day3"
 	"roryj.ca/aoc2024/day4"
 	"roryj.ca/aoc2024/day5"
+	"roryj.ca/aoc2024/day6"
 )
 
 // main function
@@ -125,5 +126,27 @@ func main() {
 
 		result2 := day5.Part_2_incorrect_only_updates(string(input))
 		fmt.Println("Part 2 Result: ", result2)
+	}
+	{
+		fmt.Println("--- Day 6 ---")
+		file, err := os.Open("inputs/day6.txt")
+		if err != nil {
+			panic(err)
+		}
+		// close fi on exit and check for its returned error
+		defer func() {
+			if err := file.Close(); err != nil {
+				panic(err)
+			}
+		}()
+		input, err := io.ReadAll(file)
+		if err != nil {
+			panic(err)
+		}
+		result := day6.Part_1_GuardPatrol(string(input))
+		fmt.Println("Part 1 Result: ", result)
+
+		// result2 := day5.Part_2_incorrect_only_updates(string(input))
+		// fmt.Println("Part 2 Result: ", result2)
 	}
 }
