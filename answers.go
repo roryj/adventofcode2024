@@ -146,7 +146,9 @@ func main() {
 		result := day6.Part_1_GuardPatrol(string(input))
 		fmt.Println("Part 1 Result: ", result)
 
-		// result2 := day5.Part_2_incorrect_only_updates(string(input))
-		// fmt.Println("Part 2 Result: ", result2)
+		result2 := day6.Part_2_LoopGuard(string(input))
+		fmt.Println("Part 2 Result: ", result2)
+
+		day6.Solve("inputs/day6.txt")
 	}
 }
