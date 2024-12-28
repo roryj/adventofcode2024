@@ -11,6 +11,7 @@ import (
 	"roryj.ca/aoc2024/day4"
 	"roryj.ca/aoc2024/day5"
 	"roryj.ca/aoc2024/day6"
+	"roryj.ca/aoc2024/day7"
 )
 
 // main function
@@ -146,9 +147,34 @@ func main() {
 		result := day6.Part_1_GuardPatrol(string(input))
 		fmt.Println("Part 1 Result: ", result)
 
+		// commented out because slow
 		result2 := day6.Part_2_LoopGuard(string(input))
 		fmt.Println("Part 2 Result: ", result2)
 
+		// commented out because slow
 		day6.Solve("inputs/day6.txt")
+	}
+	{
+		fmt.Println("--- Day 7 ---")
+		file, err := os.Open("inputs/day7.txt")
+		if err != nil {
+			panic(err)
+		}
+		// close fi on exit and check for its returned error
+		defer func() {
+			if err := file.Close(); err != nil {
+				panic(err)
+			}
+		}()
+		input, err := io.ReadAll(file)
+		if err != nil {
+			panic(err)
+		}
+		resultPartOne, resultPartTwo := day7.Part_1_CalibrateEquations(string(input))
+		fmt.Println("Part 1 Result: ", resultPartOne)
+		fmt.Println("Part 2 Result: ", resultPartTwo)
+
+		// result2 := day5.Part_2_incorrect_only_updates(string(input))
+		// fmt.Println("Part 2 Result: ", result2)
 	}
 }
